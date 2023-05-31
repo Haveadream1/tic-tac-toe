@@ -1,0 +1,75 @@
+:root {
+    font-family: comfortaa;
+}
+.first-section {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 90px 300px 90px;
+    justify-items: center;
+    align-items: center;
+}
+.title-home{
+    grid-column: 2;
+    text-align: center;
+}
+.choice-sec,
+.choice {
+    background-color: aliceblue;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.choice {
+    grid-column: 1;
+}
+.choice-sec {
+    grid-column: 3;
+}
+.avatar {
+    background-color: rgb(37, 139, 228);
+    width: 200px;
+    height: 200px;
+}
+.start-button {
+    padding: 5px 10px;
+    grid-column: 2;
+    font-size: 15px;
+    font-family: comfortaa;
+} 
+/*
+///////////////////////////////////
+*/
+.second-section {
+    background-color: rgb(149, 176, 248);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 50px 450px;
+    justify-items: center;
+    align-items: center;
+}
+.grid-game {
+    background-color: green;
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-rows: 50px 350px;
+}
+.score-div {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+.grid-cell {
+    background-color: rgb(210, 253, 253);
+}
