@@ -16,3 +16,7 @@ Add bot player
 Rename variables  
 Refactor JS
 Add readme content / goal / credit
+Game grid  
+    Set up tie  
+    Center the choice x/o
+    Refactor grid
