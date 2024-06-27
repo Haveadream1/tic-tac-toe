@@ -1,61 +1,70 @@
-body {
+:root {
   font-family: comfortaa;
-  display: grid;
-  grid-template-rows: 600px;
+  --blue: rgba(99, 176, 243, 0.849);
+  --red: #fc5858;
 }
-.first-section {
-  background-color: aquamarine;
-  grid-row: 1;
+
+body {
+  height: 100vh;
+  margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 90px 300px 90px;
-  justify-items: center;
+  grid-template-rows: 100px 400px 100px;
+  align-content: space-evenly;
   align-items: center;
+  justify-items: center;
 }
-.title-home {
-  grid-column: 2;
-  text-align: center;
+
+button {
+  padding: 10px;
+  border: none;
+  font-family: comfortaa;
 }
-.choice-sec,
-.choice {
+button:active {
+  opacity: 70%;
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+main > section {
   background-color: aliceblue;
   width: 250px;
   height: 250px;
+}
+
+.player-section,
+.computer-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-.choice {
-  grid-column: 1;
+.player-section:hover,
+.computer-section:hover {
+  outline: solid red; /*Change color*/
 }
-.choice-sec {
-  grid-column: 3;
+.player-section > button,
+.computer-section > button {
+  height: 50px;
+
 }
-.avatar {
-  background-color: rgb(37, 139, 228);
-  width: 200px;
+.player-section > img,
+.computer-section > img {
+  width: 250px;
   height: 200px;
+  background-color: var(--blue);
+  object-fit: cover;
 }
-.button-player,
-.button-bot {
-  background-color: white;
-  border: none;
-  width: 200px;
-  height: 200px;
-  font-family: comfortaa;
+
+footer > button {
+  width: 150px;
+  height: 50px;
   font-size: 16px;
 }
-.start-button {
-  width: 130px;
-  height: 40px;
-  padding: 5px 10px;
-  grid-column: 2;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  font-family: comfortaa;
+footer > button:hover {
+  background-color: var(--blue); /*Change color*/
 }
+
 
 .second-section {
   visibility: hidden;
@@ -83,7 +92,7 @@ body {
   grid-template-rows: 50px 350px;
 }
 .score-div {
-  background-color: #fc5858;
+  background-color: var(--red);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,3 +152,4 @@ body {
   height: 25px;
   width: auto;
 }
+/*154*/
