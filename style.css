@@ -8,8 +8,8 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 100px 400px 100px;
-  align-content: space-evenly;
+  grid-template-rows: 150px 400px 100px;
+  align-content: center;
   align-items: center;
   justify-items: center;
 }
@@ -23,19 +23,35 @@ button:active {
   opacity: 70%;
 }
 
+header {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.score {
+  width: 80px;
+  height: 35px;
+  border-radius: 8px;
+  margin: 0;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
+  height: 400px;
   width: 100vw;
   display: flex;
   justify-content: space-around;
-}
-main > section {
-  background-color: aliceblue;
-  width: 250px;
-  height: 250px;
+  align-items: center;
 }
 
 .player-section,
 .computer-section {
+  background-color: aliceblue;
+  width: 250px;
+  height: 250px;
   display: flex;
   flex-direction: column;
 }
@@ -56,6 +72,9 @@ main > section {
   object-fit: cover;
 }
 
+footer {
+  grid-row: 3;
+}
 footer > button {
   width: 150px;
   height: 50px;
@@ -65,58 +84,37 @@ footer > button:hover {
   background-color: var(--blue); /*Change color*/
 }
 
+.grid-container {
+  width: 250px;
+  display: grid;
+  grid-template-rows: 50px 250px;
+  align-content: center;
+}
 
-.second-section {
-  visibility: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 50px 50px 450px;
-  justify-items: center;
-  align-items: center;
-}
-.score {
-  background-color: #d9d9d9;
-  width: 80px;
-  height: 35px;
-  font-size: 16px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.grid-game {
-  background-color: #d9d9d9;
-  width: 400px;
-  height: 400px;
-  display: grid;
-  grid-template-rows: 50px 350px;
-}
-.score-div {
+.score-section {
   background-color: var(--red);
   display: flex;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
+  justify-content: space-evenly;
 }
-.cross-button {
-  margin-right: 80px;
+.x-button,
+.o-button {
+  border-radius: 5px;
 }
-.cross-button,
-.round-button {
-  background-color: white;
-  border: none;
-  width: 60px;
-  height: 30px;
-  border-radius: 8px;
-}
+
 .grid {
+  background-color: rgba(177, 177, 177, 0.39);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 15px;
+  gap: 10px;
 }
 .grid-cell {
   background-color: white;
 }
+
+/*
 .alert-container {
   margin-top: 50px;
   position: absolute;
@@ -151,5 +149,5 @@ footer > button:hover {
   font-family: comfortaa;
   height: 25px;
   width: auto;
-}
+} */
 /*154*/
