@@ -10,7 +10,7 @@
 [Images]()
 
 ## Todo :
-Refactor grid  
+Refactor grid       O                                
 Style change / review  
 Add bot player  
 Rename variables  
@@ -18,5 +18,5 @@ Refactor JS
 Add readme content / goal / credit
 Game grid  
     Set up tie  
-    Center the choice x/o
-    Refactor grid
+    Center the choice x/o   O  
+    Refactor grid           O  
