@@ -1,7 +1,93 @@
+const header = document.querySelector('header');
+const h1 = document.querySelector('h1');
+
+const main = document.querySelector('main');
+const startButton = document.querySelector('.start-button');
+
+let array = [];
+let i = -1; // as the index starts at 0
+
+const xchoice = () => {
+  const xButton = document.querySelector('.x-button');
+  const oButton = document.querySelector('.o-button');
+  array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+  xButton.disabled = true;
+  oButton.disabled = true;
+  return array;
+}
+const ochoice = () => {
+  const xButton = document.querySelector('.x-button');
+  const oButton = document.querySelector('.o-button');
+  array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
+  xButton.disabled = true;
+  oButton.disabled = true;
+  return array;
+}
+
+const selectGridCell = (e) => { // Go through the array at each click
+  i++;
+  e.target.textContent = array[i];
+  e.target.removeEventListener('click', selectGridCell);
+}
+
+const createScore = () => {
+  let score = document.createElement('p');
+  score.textContent = '0 - 0';
+  score.classList.add('score');
+  header.appendChild(score);
+}
+
+const createGrid = () => {
+  let gridContainer = document.createElement('section');
+  gridContainer.classList.add('grid-container');
+
+  let scoreSection = document.createElement('section');
+  scoreSection.classList.add('score-section');
+  gridContainer.appendChild(scoreSection);
+
+  let xButton = document.createElement('button');
+  xButton.textContent = 'X';
+  xButton.classList.add('x-button');
+  scoreSection.appendChild(xButton);
+  xButton.addEventListener('click', xchoice);
+
+  let oButton = document.createElement('button');
+  oButton.textContent = 'O';
+  oButton.classList.add('o-button');
+  scoreSection.appendChild(oButton);
+  oButton.addEventListener('click', ochoice);
+
+  let grid = document.createElement('section');
+  grid.classList.add('grid');
+  gridContainer.appendChild(grid);
+
+  for (let i = 0; i < 9; i++) {
+    let gridCell = document.createElement('div');
+    gridCell.classList.add('grid-cell');
+    grid.appendChild(gridCell);
+    gridCell.addEventListener('click', selectGridCell);
+  }
+
+  main.appendChild(gridContainer);
+}
+
+startButton.addEventListener('click', () => {
+  document.querySelectorAll('.home-screen').forEach(e => e.remove());
+  h1.textContent = 'Tic Tac Toe';
+  startButton.remove();
+
+  createScore();
+  createGrid();
+})
+
+
+
 // choice opponent and run func with x = 1 or x = 2
 // push the game into a array of object to get history
 // add bot player
-const selectValue = (() => {
+
+/*
+const mainFunction = (() => {
   let firstSection = document.querySelector(".first-section");
   let secondSection = document.querySelector(".second-section");
   let buttonPlayer = document.querySelector(".button-player");
@@ -10,7 +96,6 @@ const selectValue = (() => {
   let alignButton = document.querySelector(".align-button");
   let winner = document.querySelector(".display-winner");
   let crossButton = document.querySelector(".cross-button");
-  let gridCell = document.querySelectorAll(".grid-cell");
   let roundButton = document.querySelector(".round-button");
   let score = document.querySelector(".score");
   let buttonRestart = document.querySelector(".restart-button");
@@ -19,77 +104,6 @@ const selectValue = (() => {
   let xScore = 0;
   let oScore = 0;
 
-  /*Test */
-  const title = document.querySelector('h1');
-  const header = document.querySelector('header');
-  const main = document.querySelector('main');
-  const startButton = document.querySelector('.start-button');
-
-  const createScore = () => {
-    let score = document.createElement('p');
-    score.textContent = '0 - 0';
-    score.classList.add('score');
-    header.appendChild(score);
-  }
-
-  const createGrid = () => {
-    let gridContainer = document.createElement('section');
-    gridContainer.classList.add('grid-container');
-
-    let scoreSection = document.createElement('section');
-    scoreSection.classList.add('score-section');
-    gridContainer.appendChild(scoreSection);
-
-    let xButton = document.createElement('button');
-    xButton.textContent = 'X';
-    xButton.classList.add('x-button');
-    scoreSection.appendChild(xButton);
-
-    let oButton = document.createElement('button');
-    oButton.textContent = 'O';
-    oButton.classList.add('o-button');
-    scoreSection.appendChild(oButton);
-
-    let grid = document.createElement('section');
-    grid.classList.add('grid');
-    gridContainer.appendChild(grid);
-
-    for (let i = 0; i < 9; i++) {
-      let gridCell = document.createElement('div');
-      gridCell.classList.add('grid-cell');
-      grid.appendChild(gridCell);
-    }
-    main.appendChild(gridContainer);
-  }
-
-  startButton.addEventListener('click', () => {
-    document.querySelectorAll('.welcome-screen').forEach(e => e.remove());
-    title.textContent = 'Tic Tac Toe';
-    startButton.remove();
-    
-    createScore();
-    createGrid();
-  })
-
-  // const HomeScreen = (() => {
-  //   const startGame = () => {
-  //     firstSection.style.visibility = "hidden";
-  //     firstSection.style.gridRow = "2";
-  //     secondSection.style.visibility = "visible";
-  //     secondSection.style.gridRow = "1";
-  //     alertContainer.style.visibility = "visible";
-  //     alertContainer.style.marginTop = "150px";
-  //     alignButton.style.visibility = "hidden";
-  //     winner.textContent = "Select the sign to begin with";
-  //   };
-  //   startButton.addEventListener("click", startGame);
-
-  //   const selectAvatar = () => {
-  //     /*NEED to animate the choice, like border and movement */
-  //   };
-  //   buttonPlayer.addEventListener("click", selectAvatar);
-  //   buttonBot.addEventListener("click", selectAvatar);
-  // })();
 
   // const GameScreen = (() => {
   //   const regroupFunction = () => {
@@ -204,7 +218,7 @@ const selectValue = (() => {
   //   };
   //   buttonRestart.addEventListener("click", restartFunction);
   // })();
-})();
+//})(); 
 
 // select our sign design
 // sign button issue
