@@ -57,7 +57,7 @@ main {
 }
 .player-section:hover,
 .computer-section:hover {
-  outline: solid red; /*Change color*/
+  outline: solid var(--blue); /*Change color*/
 }
 .player-section > button,
 .computer-section > button {
@@ -81,13 +81,13 @@ footer > button {
   font-size: 16px;
 }
 footer > button:hover {
-  background-color: var(--blue); /*Change color*/
+  background-color: var(--blue);
 }
 
 .grid-container {
   width: 250px;
   display: grid;
-  grid-template-rows: 50px 250px;
+  grid-template-rows: 50px 255px;
   align-content: center;
 }
 
@@ -109,9 +109,11 @@ footer > button:hover {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
+  text-align: center;
 }
 .grid-cell {
   background-color: white;
+  padding: 30px;
 }
 
 /*
