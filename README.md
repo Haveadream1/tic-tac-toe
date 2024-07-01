@@ -20,3 +20,5 @@ Game grid
     Set up tie  
     Center the choice x/o   O  
     Refactor grid           O  
+    Chack addeventlistener for cell  
+    Refactor score not x/0 more player/opponent
