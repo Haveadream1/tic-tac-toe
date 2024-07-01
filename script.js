@@ -14,7 +14,16 @@ let clickCount = 0;
 const alertSection = document.querySelector('.alert-section');
 const winnerText = document.querySelector('.winner-text');
 
+const restartButton = document.querySelector('.restart-button');
+const quitButton = document.querySelector('.quit-button');
+
 // Selector inside function as we create them with JS
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  createHomeScreen() // Init
+});
+
 
 const xchoice = () => {
   const xButton = document.querySelector('.x-button');
@@ -39,7 +48,6 @@ const stopGame = () => {
   alertSection.style.visibility = 'visible';
 };
 
-//Target visibility alert and change h1
 //Rappel user of choising x/o before gridcell => no addevent before
 
 const winningCombinations = [
@@ -146,152 +154,85 @@ const createGrid = () => {
 startButton.addEventListener('click', () => {
   document.querySelectorAll('.home-screen').forEach(e => e.remove());
   h1.textContent = 'Tic Tac Toe';
-  startButton.remove();
+  startButton.style.visibility = 'hidden';
 
   createScore();
   createGrid();
 })
 
+restartButton.addEventListener('click', () => {
+  let gridCell = document.querySelectorAll('.grid-cell');
+  let xButton = document.querySelector('.x-button');
+  let oButton = document.querySelector('.o-button');
+
+  console.log(array);
+  array = [];
+  xButton.disabled = false;
+  oButton.disabled = false;
+
+  console.log(array);
+  
+  alertSection.style.visibility = 'hidden';
+  clickCount = 0
+  i = 0
+  console.log(clickCount);
+
+  gridCell.forEach(e => e.textContent = '');
+  gridCell.forEach(e => e.addEventListener('click', selectGridCell));
+  
+})
+
+const createHomeScreen = () => {
+  let playerSection = document.createElement('section');
+  playerSection.classList.add('player-section');
+  playerSection.classList.add('home-screen');
+
+  let playerImg = document.createElement('img');
+  playerSection.appendChild(playerImg);
+
+  let playerButton = document.createElement('button');
+  playerButton.classList.add('player-button');
+  playerButton.textContent = 'Player 2';
+  playerSection.appendChild(playerButton);
+
+  main.appendChild(playerSection)
+
+  let computerSection = document.createElement('section');
+  computerSection.classList.add('computer-section');
+  computerSection.classList.add('home-screen');
+
+  let computerImg = document.createElement('img');
+  computerSection.appendChild(computerImg);
+
+  let computerButton = document.createElement('button');
+  computerButton.classList.add('computer-button');
+  computerButton.textContent = 'Bot';
+  computerSection.appendChild(computerButton);
+  
+  main.appendChild(computerSection)
+}
+
+
+quitButton.addEventListener('click', () => {
+  let score = document.querySelector('.score');
+  let gridContainer = document.querySelector('.grid-container');
+
+
+  score.remove()
+  gridContainer.remove()
+
+  createHomeScreen()
+
+  h1.textContent = 'Select your opponent';
+  alertSection.style.visibility = 'hidden';
+  startButton.style.visibility = 'visible';
+})
 
 
 
 // choice opponent and run func with x = 1 or x = 2
 // push the game into a array of object to get history
 // add bot player
-
-/*
-const mainFunction = (() => {
-  let firstSection = document.querySelector(".first-section");
-  let secondSection = document.querySelector(".second-section");
-  let buttonPlayer = document.querySelector(".button-player");
-  let buttonBot = document.querySelector(".button-bot");
-  let alertContainer = document.querySelector(".alert-container");
-  let alignButton = document.querySelector(".align-button");
-  let winner = document.querySelector(".display-winner");
-  let crossButton = document.querySelector(".cross-button");
-  let roundButton = document.querySelector(".round-button");
-  let score = document.querySelector(".score");
-  let buttonRestart = document.querySelector(".restart-button");
-  let buttonQuit = document.querySelector(".quit-button");
-  let clickCount = -1;
-  let xScore = 0;
-  let oScore = 0;
-
-
-  // const GameScreen = (() => {
-  //   const regroupFunction = () => {
-  //     crossButton.disabled = true;
-  //     roundButton.disabled = true;
-  //     alertContainer.style.visibility = "hidden";
-  //   };
-  //   const crossFunction = () => {
-  //     array = ["x", "o", "x", "o", "x", "o", "x", "o", "x"];
-  //     regroupFunction();
-  //   };
-  //   crossButton.addEventListener("click", crossFunction);
-
-  //   const roundFunction = () => {
-  //     array = ["o", "x", "o", "x", "o", "x", "o", "x", "o"];
-  //     regroupFunction();
-  //   };
-  //   roundButton.addEventListener("click", roundFunction);
-
-  //   const selectGrid = (e) => {
-  //     clickCount++;
-  //     console.log(clickCount);
-  //     display = array[clickCount];
-  //     e.target.textContent = display;
-  //     e.target.removeEventListener("click", selectGrid);
-  //     setConditions();
-  //   };
-  //   gridCell.forEach((i) => {
-  //     i.addEventListener("click", selectGrid);
-  //   });
-
-  //   // if we start with x display win when value row contains x
-  //   const setConditions = () => {
-  //     let cellValue1 = gridCell[0].textContent;
-  //     let cellValue2 = gridCell[1].textContent;
-  //     let cellValue3 = gridCell[2].textContent;
-  //     let cellValue4 = gridCell[3].textContent;
-  //     let cellValue5 = gridCell[4].textContent;
-  //     let cellValue6 = gridCell[5].textContent;
-  //     let cellValue7 = gridCell[6].textContent;
-  //     let cellValue8 = gridCell[7].textContent;
-  //     let cellValue9 = gridCell[8].textContent;
-  //     // clean code
-  //     if (
-  //       (cellValue1 === "x" && cellValue2 === "x" && cellValue3 === "x") ||
-  //       (cellValue4 === "x" && cellValue5 === "x" && cellValue6 === "x") ||
-  //       (cellValue7 === "x" && cellValue8 === "x" && cellValue9 === "x") ||
-  //       (cellValue1 === "x" && cellValue4 === "x" && cellValue7 === "x") ||
-  //       (cellValue2 === "x" && cellValue5 === "x" && cellValue8 === "x") ||
-  //       (cellValue3 === "x" && cellValue6 === "x" && cellValue9 === "x") ||
-  //       (cellValue1 === "x" && cellValue5 === "x" && cellValue9 === "x") ||
-  //       (cellValue3 === "x" && cellValue5 === "x" && cellValue7 === "x")
-  //     ) {
-  //       xScore++;
-  //       winner.textContent = `x Win !`;
-  //       stopGame();
-  //     } else if (
-  //       (cellValue1 === "o" && cellValue2 === "o" && cellValue3 === "o") ||
-  //       (cellValue4 === "o" && cellValue5 === "o" && cellValue6 === "o") ||
-  //       (cellValue7 === "o" && cellValue8 === "o" && cellValue9 === "o") ||
-  //       (cellValue1 === "o" && cellValue4 === "o" && cellValue7 === "o") ||
-  //       (cellValue2 === "o" && cellValue5 === "o" && cellValue8 === "o") ||
-  //       (cellValue3 === "o" && cellValue6 === "o" && cellValue9 === "o") ||
-  //       (cellValue1 === "o" && cellValue5 === "o" && cellValue9 === "o") ||
-  //       (cellValue3 === "o" && cellValue5 === "o" && cellValue7 === "o")
-  //     ) {
-  //       oScore++;
-  //       winner.textContent = `o Win !`;
-  //       stopGame();
-  //     } /*else {
-  //               winner.textContent = `Tie !`;
-  //               stopGame();
-  //           }*/
-  //   };
-
-  //   const stopGame = () => {
-  //     clickCount = 9;
-  //     alertContainer.style.visibility = "visible";
-  //     alertContainer.style.marginTop = "50px";
-  //     alignButton.style.visibility = "visible";
-  //     score.textContent = `${xScore} - ${oScore}`;
-  //   };
-
-  //   buttonQuit.addEventListener("click", () => {
-  //     firstSection.style.visibility = "visible";
-  //     firstSection.style.gridRow = "1";
-  //     secondSection.style.visibility = "hidden";
-  //     secondSection.style.gridRow = "2";
-  //     crossButton.disabled = false;
-  //     roundButton.disabled = false;
-  //     xScore = 0;
-  //     oScore = 0;
-  //     score.textContent = `${xScore} - ${oScore}`;
-  //     cleanGame();
-  //     // clean code
-  //   });
-
-  //   const cleanGame = () => {
-  //     clickCount = -1;
-  //     gridCell.forEach((i) => {
-  //       i.textContent = " ";
-  //       i.addEventListener("click", selectGrid);
-  //     });
-  //     alertContainer.style.visibility = "hidden";
-  //     alignButton.style.visibility = "hidden";
-  //   };
-
-  //   const restartFunction = () => {
-  //     crossButton.disabled = true;
-  //     roundButton.disabled = true;
-  //     cleanGame();
-  //   };
-  //   buttonRestart.addEventListener("click", restartFunction);
-  // })();
-//})(); 
 
 // select our sign design
 // sign button issue
