@@ -7,6 +7,15 @@ const startButton = document.querySelector('.start-button');
 let array = [];
 let i = -1; // as the index starts at 0
 
+let oScore = 0;
+let xScore = 0;
+let clickCount = 0;
+
+const alertSection = document.querySelector('.alert-section');
+const winnerText = document.querySelector('.winner-text');
+
+// Selector inside function as we create them with JS
+
 const xchoice = () => {
   const xButton = document.querySelector('.x-button');
   const oButton = document.querySelector('.o-button');
@@ -24,10 +33,73 @@ const ochoice = () => {
   return array;
 }
 
+const stopGame = () => {
+  const score = document.querySelector('.score');
+  score.textContent = `${xScore} - ${oScore}`;
+  alertSection.style.visibility = 'visible';
+};
+
+//Target visibility alert and change h1
+//Rappel user of choising x/o before gridcell => no addevent before
+
+const winningCombinations = [
+  [1,2,3] , [4,5,6] , [7,8,9], // Row
+  [1,4,7] , [2,5,8] , [3,6,9], // Column
+  [1,5,9] , [3,5,7]  // Diagonal
+]
+
+const checkResult = () => {
+  clickCount++;
+
+  let gridCell = document.querySelectorAll('.grid-cell');
+
+  let cellValue1 = gridCell[0].textContent;
+  let cellValue2 = gridCell[1].textContent;
+  let cellValue3 = gridCell[2].textContent;
+  let cellValue4 = gridCell[3].textContent;
+  let cellValue5 = gridCell[4].textContent;
+  let cellValue6 = gridCell[5].textContent;
+  let cellValue7 = gridCell[6].textContent;
+  let cellValue8 = gridCell[7].textContent;
+  let cellValue9 = gridCell[8].textContent;
+
+  if (
+    (cellValue1 === "x" && cellValue2 === "x" && cellValue3 === "x") ||
+    (cellValue4 === "x" && cellValue5 === "x" && cellValue6 === "x") ||
+    (cellValue7 === "x" && cellValue8 === "x" && cellValue9 === "x") ||
+    (cellValue1 === "x" && cellValue4 === "x" && cellValue7 === "x") ||
+    (cellValue2 === "x" && cellValue5 === "x" && cellValue8 === "x") ||
+    (cellValue3 === "x" && cellValue6 === "x" && cellValue9 === "x") ||
+    (cellValue1 === "x" && cellValue5 === "x" && cellValue9 === "x") ||
+    (cellValue3 === "x" && cellValue5 === "x" && cellValue7 === "x")
+  ) {
+    xScore++;
+    winnerText.textContent = `x Win !`;
+    stopGame();
+  } else if (
+    (cellValue1 === "o" && cellValue2 === "o" && cellValue3 === "o") ||
+    (cellValue4 === "o" && cellValue5 === "o" && cellValue6 === "o") ||
+    (cellValue7 === "o" && cellValue8 === "o" && cellValue9 === "o") ||
+    (cellValue1 === "o" && cellValue4 === "o" && cellValue7 === "o") ||
+    (cellValue2 === "o" && cellValue5 === "o" && cellValue8 === "o") ||
+    (cellValue3 === "o" && cellValue6 === "o" && cellValue9 === "o") ||
+    (cellValue1 === "o" && cellValue5 === "o" && cellValue9 === "o") ||
+    (cellValue3 === "o" && cellValue5 === "o" && cellValue7 === "o")
+  ) {
+    oScore++;
+    winnerText.textContent = `o Win !`;
+    stopGame();
+  } else if (clickCount === 9) {
+    winnerText.textContent = `Tie !`;
+    stopGame();
+  }
+};
+
 const selectGridCell = (e) => { // Go through the array at each click
   i++;
   e.target.textContent = array[i];
   e.target.removeEventListener('click', selectGridCell);
+  checkResult();
 }
 
 const createScore = () => {
@@ -41,20 +113,20 @@ const createGrid = () => {
   let gridContainer = document.createElement('section');
   gridContainer.classList.add('grid-container');
 
-  let scoreSection = document.createElement('section');
-  scoreSection.classList.add('score-section');
-  gridContainer.appendChild(scoreSection);
+  let choiceSection = document.createElement('section');
+  choiceSection.classList.add('choice-section');
+  gridContainer.appendChild(choiceSection);
 
   let xButton = document.createElement('button');
   xButton.textContent = 'X';
   xButton.classList.add('x-button');
-  scoreSection.appendChild(xButton);
+  choiceSection.appendChild(xButton);
   xButton.addEventListener('click', xchoice);
 
   let oButton = document.createElement('button');
   oButton.textContent = 'O';
   oButton.classList.add('o-button');
-  scoreSection.appendChild(oButton);
+  choiceSection.appendChild(oButton);
   oButton.addEventListener('click', ochoice);
 
   let grid = document.createElement('section');
@@ -79,6 +151,7 @@ startButton.addEventListener('click', () => {
   createScore();
   createGrid();
 })
+
 
 
 
