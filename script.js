@@ -45,7 +45,6 @@ const stopGame = () => {
 };
 
 //Rappel user of choising x/o before gridcell => no addevent before
-
 const winningCombinations = [
   [1,2,3] , [4,5,6] , [7,8,9], // Row
   [1,4,7] , [2,5,8] , [3,6,9], // Column
@@ -203,7 +202,6 @@ const createHomeScreen = () => {
   main.appendChild(computerSection);
 }
 
-
 quitButton.addEventListener('click', () => {
   let score = document.querySelector('.score');
   let gridContainer = document.querySelector('.grid-container');
@@ -221,19 +219,6 @@ quitButton.addEventListener('click', () => {
   alertSection.style.visibility = 'hidden';
   startButton.style.visibility = 'visible';
 })
-
-
-
-// choice opponent and run func with x = 1 or x = 2
-// push the game into a array of object to get history
-// add bot player
-
-// select our sign design
-// sign button issue
-/*
-cellValue1 !== undefined && cellValue2 !== undefined && cellValue3 !== undefined &&
-            cellValue4 !== undefined && cellValue5 !== undefined && cellValue6 !== undefined &&
-            cellValue7 !== undefined && cellValue8 !== undefined && cellValue9 !== undefined
 
 /*  First select opponent
     if player choice run function 
