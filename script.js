@@ -19,11 +19,9 @@ const quitButton = document.querySelector('.quit-button');
 
 // Selector inside function as we create them with JS
 
-
 document.addEventListener('DOMContentLoaded', () => {
   createHomeScreen() // Init
 });
-
 
 const xchoice = () => {
   const xButton = document.querySelector('.x-button');
@@ -31,7 +29,7 @@ const xchoice = () => {
   array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
   xButton.disabled = true;
   oButton.disabled = true;
-  return array;
+  // return array;
 }
 const ochoice = () => {
   const xButton = document.querySelector('.x-button');
@@ -39,7 +37,7 @@ const ochoice = () => {
   array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
   xButton.disabled = true;
   oButton.disabled = true;
-  return array;
+  // return array;
 }
 
 const stopGame = () => {
@@ -173,13 +171,12 @@ restartButton.addEventListener('click', () => {
   console.log(array);
   
   alertSection.style.visibility = 'hidden';
-  clickCount = 0
-  i = 0
+  clickCount = 0;
+  i = -1;
   console.log(clickCount);
 
   gridCell.forEach(e => e.textContent = '');
   gridCell.forEach(e => e.addEventListener('click', selectGridCell));
-  
 })
 
 const createHomeScreen = () => {
@@ -195,7 +192,7 @@ const createHomeScreen = () => {
   playerButton.textContent = 'Player 2';
   playerSection.appendChild(playerButton);
 
-  main.appendChild(playerSection)
+  main.appendChild(playerSection);
 
   let computerSection = document.createElement('section');
   computerSection.classList.add('computer-section');
@@ -209,19 +206,20 @@ const createHomeScreen = () => {
   computerButton.textContent = 'Bot';
   computerSection.appendChild(computerButton);
   
-  main.appendChild(computerSection)
+  main.appendChild(computerSection);
 }
 
-
+// Score ok, display ok
+// ISSUE with O
 quitButton.addEventListener('click', () => {
   let score = document.querySelector('.score');
   let gridContainer = document.querySelector('.grid-container');
 
 
-  score.remove()
-  gridContainer.remove()
+  score.remove();
+  gridContainer.remove();
 
-  createHomeScreen()
+  createHomeScreen();
 
   h1.textContent = 'Select your opponent';
   alertSection.style.visibility = 'hidden';
