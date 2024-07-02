@@ -29,7 +29,6 @@ const xchoice = () => {
   array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
   xButton.disabled = true;
   oButton.disabled = true;
-  // return array;
 }
 const ochoice = () => {
   const xButton = document.querySelector('.x-button');
@@ -37,7 +36,6 @@ const ochoice = () => {
   array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
   xButton.disabled = true;
   oButton.disabled = true;
-  // return array;
 }
 
 const stopGame = () => {
@@ -163,17 +161,13 @@ restartButton.addEventListener('click', () => {
   let xButton = document.querySelector('.x-button');
   let oButton = document.querySelector('.o-button');
 
-  console.log(array);
   array = [];
   xButton.disabled = false;
   oButton.disabled = false;
 
-  console.log(array);
-  
   alertSection.style.visibility = 'hidden';
   clickCount = 0;
   i = -1;
-  console.log(clickCount);
 
   gridCell.forEach(e => e.textContent = '');
   gridCell.forEach(e => e.addEventListener('click', selectGridCell));
@@ -209,17 +203,19 @@ const createHomeScreen = () => {
   main.appendChild(computerSection);
 }
 
-// Score ok, display ok
-// ISSUE with O
+
 quitButton.addEventListener('click', () => {
   let score = document.querySelector('.score');
   let gridContainer = document.querySelector('.grid-container');
 
-
   score.remove();
   gridContainer.remove();
-
   createHomeScreen();
+
+  i = -1;
+  clickCount = 0;
+  oScore = 0;
+  xScore = 0;
 
   h1.textContent = 'Select your opponent';
   alertSection.style.visibility = 'hidden';
