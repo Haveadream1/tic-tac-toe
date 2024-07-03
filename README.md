@@ -7,15 +7,15 @@ The goal is to manipulate the array and also the DOM.
 [Tic Tac Toe](http://127.0.0.1:3000/index.html)
 
 ## Credit
-[TheOdinProject](https://www.theodinproject.com/)   
+[TheOdinProject](https://www.theodinproject.com/)     
 [Images]()
 
 ## Todo :
 Add bot player  
-Add readme credit
+Add readme credit  
 Game grid  
-    *Disable eventlistener before choice  
-    *Refactor score: not x/0 more player/opponent
-    *Refactor querySelector
-    *Refactor winning conditions
-    *Add image
+    *Disable eventlistener before choice    
+    *Refactor score: not x/0 more player/opponent  
+    *Refactor querySelector  
+    *Refactor winning conditions  
+    *Add image  
