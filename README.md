@@ -21,3 +21,4 @@ The goal is to manipulate the array and also the DOM.
    * Refactor querySelector
    * Refactor winning conditions
    * Add image for players
+4. Verify gh pages, preview doesnt show
