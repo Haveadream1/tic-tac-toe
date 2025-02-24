@@ -12,10 +12,7 @@ The goal is to store the gameboard as an array inside an object using a little a
 
 ## Todo :
 2. CSS
-* Separate section using comments
-* Review grey color
 * Add images for bots and players
-* Expand the grid
 3. JS
 * Use less global code
 * Implement a Gameboard object and store the array inside
