@@ -23,6 +23,7 @@ button:active {
   opacity: 70%;
 }
 
+/* HEADER */
 header {
 display: flex;
 flex-direction: column;
@@ -35,6 +36,7 @@ align-items: center;
   background-color: #d9d9d9;
 }
 
+/* MAIN */
 main {
   height: 400px;
   width: 100vw;
@@ -113,21 +115,22 @@ main {
 .alert-section > p {
   text-align: center;
 }
-.alert-button {
+.alert-button-section {
   display: flex;
   justify-content: space-around;
 }
 .restart-button,
-.quit-button {
+.exit-button {
   text-align: center;
   border: none;
   width: 80px;
 } 
 .restart-button:hover,
-.quit-button:hover {
+.exit-button:hover {
   outline: solid var(--red);
 } 
 
+/* FOOTER */
 footer {
   grid-row: 3;
 }
