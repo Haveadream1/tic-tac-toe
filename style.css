@@ -75,7 +75,7 @@ main {
 }
 
 .grid-container {
-  width: 250px;
+  width: 350px;
   display: grid;
   grid-template-rows: 50px 255px;
   align-content: center;
@@ -103,14 +103,17 @@ main {
 }
 .grid-cell {
   background-color: white;
-  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
 }
 
 .alert-section {
   position: absolute;
   visibility: hidden;
   background-color: var(--transparent-grey);
-  width: 250px;
+  width: 350px;
   height: 305px;
   display: flex;
   flex-direction: column;
