@@ -11,8 +11,6 @@ The goal is to store the gameboard as an array inside an object using a little a
 [Images]()
 
 ## Todo :
-1. HTML
-* Add button type
 2. CSS
 * Separate section using comments
 * Review grey color
