@@ -1,7 +1,11 @@
 :root {
   font-family: comfortaa;
   --blue: rgba(99, 176, 243, 0.849);
+  --section-blue: aliceblue;
   --red: #fc5858;
+  --dark-grey: #d9d9d9;
+  --grid-grey: rgba(177, 177, 177, 0.39);
+  --transparent-grey: #d9d9d99e;
 }
 
 body {
@@ -33,7 +37,7 @@ align-items: center;
   border-radius: 8px;
   margin: 0;
   padding: 10px 20px;
-  background-color: #d9d9d9;
+  background-color: var(--dark-grey);
 }
 
 /* MAIN */
@@ -47,7 +51,7 @@ main {
 
 .player-section,
 .computer-section {
-  background-color: aliceblue;
+  background-color: var(--section-blue);
   width: 250px;
   height: 250px;
   display: flex;
@@ -55,12 +59,12 @@ main {
 }
 .player-section:hover,
 .computer-section:hover {
-  outline: solid var(--blue); /*Change color*/
+  outline: solid var(--blue);
 }
 .player-section > button,
 .computer-section > button {
   height: 50px;
-
+  background-color: var(--dark-grey);
 }
 .player-section > img,
 .computer-section > img {
@@ -90,7 +94,7 @@ main {
 }
 
 .grid {
-  background-color: rgba(177, 177, 177, 0.39);
+  background-color: var(--grid-grey);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -105,7 +109,7 @@ main {
 .alert-section {
   position: absolute;
   visibility: hidden;
-  background-color: #d9d9d99e;;
+  background-color: var(--transparent-grey);
   width: 250px;
   height: 305px;
   display: flex;
@@ -138,6 +142,7 @@ footer > button {
   width: 150px;
   height: 50px;
   font-size: 16px;
+  background-color: var(--dark-grey);
 }
 footer > button:hover {
   background-color: var(--blue);
