@@ -15,7 +15,7 @@ const alertSection = document.querySelector('.alert-section');
 const winnerText = document.querySelector('.winner-text');
 
 const restartButton = document.querySelector('.restart-button');
-const quitButton = document.querySelector('.quit-button');
+const exitButton = document.querySelector('.exit-button');
 
 // Selector inside function as we create them with JS
 
@@ -23,14 +23,28 @@ document.addEventListener('DOMContentLoaded', () => {
   createHomeScreen() // Init
 });
 
-const xchoice = () => {
+//--------------------
+let gameboardArray = []
+
+const gameBoard = {
+
+}
+
+const bot = {
+  
+}
+
+
+//--------------------
+
+function xchoice() {
   const xButton = document.querySelector('.x-button');
   const oButton = document.querySelector('.o-button');
   array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
   xButton.disabled = true;
   oButton.disabled = true;
 }
-const ochoice = () => {
+function ochoice() {
   const xButton = document.querySelector('.x-button');
   const oButton = document.querySelector('.o-button');
   array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
@@ -38,7 +52,7 @@ const ochoice = () => {
   oButton.disabled = true;
 }
 
-const stopGame = () => {
+function stopGame() {
   const score = document.querySelector('.score');
   score.textContent = `${xScore} - ${oScore}`;
   alertSection.style.visibility = 'visible';
@@ -98,21 +112,22 @@ const checkResult = () => {
   }
 };
 
-const selectGridCell = (e) => { // Go through the array at each click
+function selectGridCell(e) { // Go through the array at each click
   i++;
   e.target.textContent = array[i];
   e.target.removeEventListener('click', selectGridCell);
   checkResult();
 }
 
-const createScore = () => {
+// Main init
+function createScore() {
   let score = document.createElement('p');
   score.textContent = '0 - 0';
   score.classList.add('score');
   header.appendChild(score);
 }
 
-const createGrid = () => {
+function createGrid() {
   let gridContainer = document.createElement('section');
   gridContainer.classList.add('grid-container');
 
@@ -172,7 +187,7 @@ restartButton.addEventListener('click', () => {
   gridCell.forEach(e => e.addEventListener('click', selectGridCell));
 })
 
-const createHomeScreen = () => {
+function createHomeScreen() {
   let playerSection = document.createElement('section');
   playerSection.classList.add('player-section');
   playerSection.classList.add('home-screen');
@@ -202,7 +217,7 @@ const createHomeScreen = () => {
   main.appendChild(computerSection);
 }
 
-quitButton.addEventListener('click', () => {
+exitButton.addEventListener('click', () => {
   let score = document.querySelector('.score');
   let gridContainer = document.querySelector('.grid-container');
 
