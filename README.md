@@ -2,7 +2,7 @@
 Online game where we can host a local party with a second player or with a bot.
 We can choose and change the sign at each round, continue the game or go back to the home screen.
 ## Goal
-The goal is to store the gameboard as an array inside an object using a little as possible of global code.
+The goal is to store the gameboard as an array inside an object using a little as possible of global code. All by avoiding global code, so most elements are created with JS and added to the DOM.
 ## Preview
 [Tic Tac Toe](http://127.0.0.1:3000/index.html)
 
@@ -14,6 +14,7 @@ The goal is to store the gameboard as an array inside an object using a little a
 2. CSS
 * Add images for bots and players
 3. JS
+* Change functions
 * Use less global code
 * Implement a Gameboard object and store the array inside
 * Clean code, and winning conditions
@@ -27,7 +28,7 @@ The goal is to store the gameboard as an array inside an object using a little a
 Add bot player  
 
 Game grid  
-    *Disable eventlistener before choice    
+    * !! Disable eventlistener before choice    
     *Refactor score: not x/0 more player/opponent  
     *Refactor querySelector  
     *Refactor winning conditions  
