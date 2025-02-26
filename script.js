@@ -24,16 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //--------------------
-let gameboardArray = []
 
-const gameBoard = {
+// need to store the gameboard as an array in the Gameboard object
+// const gameBoard = {
+//   array : [],
 
-}
+// }
 
-const bot = {
+const gameBoard = (function () {
+  let gameBoardArray = [];
   
-}
+  const cleanArray = () => gameBoardArray = [];
+  const appendElement = (e) => gameBoardArray.push(e);
+  const getGameBoardArray = () => console.log(gameBoardArray);
 
+  return {cleanArray, appendElement, getGameBoardArray};
+})();
 
 //--------------------
 
@@ -114,6 +120,10 @@ const checkResult = () => {
 
 function selectGridCell(e) { // Go through the array at each click
   i++;
+
+  gameBoard.appendElement(array[i]);
+  gameBoard.getGameBoardArray();
+
   e.target.textContent = array[i];
   e.target.removeEventListener('click', selectGridCell);
   checkResult();
@@ -176,6 +186,8 @@ restartButton.addEventListener('click', () => {
   let oButton = document.querySelector('.o-button');
 
   array = [];
+  gameBoard.cleanArray();
+
   xButton.disabled = false;
   oButton.disabled = false;
 
@@ -224,6 +236,8 @@ exitButton.addEventListener('click', () => {
   score.remove();
   gridContainer.remove();
   createHomeScreen();
+
+  gameBoard.cleanArray();
 
   i = -1;
   clickCount = 0;
