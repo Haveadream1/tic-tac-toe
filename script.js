@@ -4,20 +4,18 @@ const h1 = document.querySelector('h1');
 const main = document.querySelector('main');
 const startButton = document.querySelector('.start-button');
 
-let array = [];
-let i = -1; // as the index starts at 0
-
-let oScore = 0;
-let xScore = 0;
-let clickCount = 0;
-
 const alertSection = document.querySelector('.alert-section');
 const winnerText = document.querySelector('.winner-text');
 
 const restartButton = document.querySelector('.restart-button');
 const exitButton = document.querySelector('.exit-button');
 
-// Selector inside function as we create them with JS
+let array = [];
+let i = -1; // as the index starts at 0
+
+let oScore = 0;
+let xScore = 0;
+let clickCount = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   createHomeScreen() // Init
@@ -33,30 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const gameBoard = (function () {
   let gameBoardArray = [];
-  
+
   const cleanArray = () => gameBoardArray = [];
   const appendElement = (e) => gameBoardArray.push(e);
   const getGameBoardArray = () => console.log(gameBoardArray);
+  const getGameBoardArrayTest = () => gameBoardArray
 
-  return {cleanArray, appendElement, getGameBoardArray};
+  return {cleanArray, appendElement, getGameBoardArray, getGameBoardArrayTest};
 })();
 
-//--------------------
+function checkResulstTest() {
+  for (let i = 0; i < gameBoard.getGameBoardArrayTest(); i++) {
+    console.log(i)
+  }
+}
 
-function xchoice() {
-  const xButton = document.querySelector('.x-button');
-  const oButton = document.querySelector('.o-button');
-  array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
-  xButton.disabled = true;
-  oButton.disabled = true;
-}
-function ochoice() {
-  const xButton = document.querySelector('.x-button');
-  const oButton = document.querySelector('.o-button');
-  array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
-  xButton.disabled = true;
-  oButton.disabled = true;
-}
+//--------------------
 
 function stopGame() {
   const score = document.querySelector('.score');
@@ -118,7 +108,7 @@ const checkResult = () => {
   }
 };
 
-function selectGridCell(e) { // Go through the array at each click
+function selectGridCell(e) {
   i++;
 
   gameBoard.appendElement(array[i]);
@@ -127,7 +117,39 @@ function selectGridCell(e) { // Go through the array at each click
   e.target.textContent = array[i];
   e.target.removeEventListener('click', selectGridCell);
   checkResult();
+
+  checkResulstTest()
 }
+
+function enableEventListener() {
+  let gridCell = document.querySelectorAll('.grid-cell');
+  gridCell.forEach(e => e.addEventListener('click', selectGridCell));
+}
+
+function disableEventListener() {
+  let gridCell = document.querySelectorAll('.grid-cell');
+  gridCell.forEach(e => e.removeEventListener('click', selectGridCell))
+}
+
+function xchoice() {
+  const xButton = document.querySelector('.x-button');
+  const oButton = document.querySelector('.o-button');
+  array = ['x', 'o', 'x', 'o', 'x', 'o', 'x', 'o', 'x'];
+  xButton.disabled = true;
+  oButton.disabled = true;
+
+  enableEventListener()
+}
+function ochoice() {
+  const xButton = document.querySelector('.x-button');
+  const oButton = document.querySelector('.o-button');
+  array = ['o', 'x', 'o', 'x', 'o', 'x', 'o', 'x', 'o'];
+  xButton.disabled = true;
+  oButton.disabled = true;
+
+  enableEventListener()
+}
+
 
 // Main init
 function createScore() {
@@ -165,7 +187,6 @@ function createGrid() {
     let gridCell = document.createElement('div');
     gridCell.classList.add('grid-cell');
     grid.appendChild(gridCell);
-    gridCell.addEventListener('click', selectGridCell);
   }
 
   main.appendChild(gridContainer);
@@ -196,7 +217,7 @@ restartButton.addEventListener('click', () => {
   i = -1;
 
   gridCell.forEach(e => e.textContent = '');
-  gridCell.forEach(e => e.addEventListener('click', selectGridCell));
+  disableEventListener()
 })
 
 function createHomeScreen() {
