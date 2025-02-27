@@ -20,6 +20,3 @@ The goal is to store the gameboard as an array inside an object using a little a
 * (add bot player)
 4. Readme
 * add images credits
-
-Add bot player   
-    
