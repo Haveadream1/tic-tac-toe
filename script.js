@@ -55,6 +55,7 @@ function checkArray(choice) {
   return false
 }
 
+// Stop the game whenever a winner is found
 function checkResult() {
   clickCount++;
 
@@ -78,6 +79,7 @@ function checkResult() {
   }
 }
 
+// Run each time a cell is clicked
 function selectGridCell(e) {
   i++;
 
@@ -120,7 +122,7 @@ function ochoice() {
   enableEventListener()
 }
 
-// Main init
+// DOM handlers
 function createScore() {
   let score = document.createElement('p');
   score.textContent = '0 - 0';
