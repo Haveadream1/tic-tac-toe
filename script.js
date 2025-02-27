@@ -21,32 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   createHomeScreen() // Init
 });
 
-//--------------------
-
-// need to store the gameboard as an array in the Gameboard object
-// const gameBoard = {
-//   array : [],
-
-// }
-
 const gameBoard = (function () {
-  let gameBoardArray = [];
+  let gameBoardArray = ['','','','','','','','',''];
 
-  const cleanArray = () => gameBoardArray = [];
-  const appendElement = (e) => gameBoardArray.push(e);
-  const getGameBoardArray = () => console.log(gameBoardArray);
-  const getGameBoardArrayTest = () => gameBoardArray
+  const cleanArray = () => gameBoardArray = ['','','','','','','','',''];
+  const spliceElement = (index,e) => gameBoardArray.splice(index, 1, e);
+  const outputArray = () => console.log(gameBoardArray);
+  const getArray = () => gameBoardArray
 
-  return {cleanArray, appendElement, getGameBoardArray, getGameBoardArrayTest};
+  return {cleanArray, spliceElement, outputArray, getArray};
 })();
-
-function checkResulstTest() {
-  for (let i = 0; i < gameBoard.getGameBoardArrayTest(); i++) {
-    console.log(i)
-  }
-}
-
-//--------------------
 
 function stopGame() {
   const score = document.querySelector('.score');
@@ -54,71 +38,57 @@ function stopGame() {
   alertSection.style.visibility = 'visible';
 };
 
-//Rappel user of choising x/o before gridcell => no addevent before
-const winningCombinations = [
-  [1,2,3] , [4,5,6] , [7,8,9], // Row
-  [1,4,7] , [2,5,8] , [3,6,9], // Column
-  [1,5,9] , [3,5,7]  // Diagonal
+const winningComps = [
+  [0,1,2] , [3,4,5] , [6,7,8], // Row
+  [0,3,6] , [1,4,7] , [2,5,8], // Column
+  [0,4,8] , [2,4,6]  // Diagonal
 ]
 
-const checkResult = () => {
+// Based on the winning combinations, we check if there is a winner by parcouring the array
+function checkArray(choice) {
+  let array = gameBoard.getArray()
+  for (let i = 0; i < winningComps.length; i++) {
+    if (array[winningComps[i][0]] === choice && array[winningComps[i][1]] === choice && array[winningComps[i][2]] === choice) {
+      return true
+    }
+  }
+  return false
+}
+
+function checkResult() {
   clickCount++;
 
-  let gridCell = document.querySelectorAll('.grid-cell');
-
-  let cellValue1 = gridCell[0].textContent;
-  let cellValue2 = gridCell[1].textContent;
-  let cellValue3 = gridCell[2].textContent;
-  let cellValue4 = gridCell[3].textContent;
-  let cellValue5 = gridCell[4].textContent;
-  let cellValue6 = gridCell[5].textContent;
-  let cellValue7 = gridCell[6].textContent;
-  let cellValue8 = gridCell[7].textContent;
-  let cellValue9 = gridCell[8].textContent;
-
-  if (
-    (cellValue1 === "x" && cellValue2 === "x" && cellValue3 === "x") ||
-    (cellValue4 === "x" && cellValue5 === "x" && cellValue6 === "x") ||
-    (cellValue7 === "x" && cellValue8 === "x" && cellValue9 === "x") ||
-    (cellValue1 === "x" && cellValue4 === "x" && cellValue7 === "x") ||
-    (cellValue2 === "x" && cellValue5 === "x" && cellValue8 === "x") ||
-    (cellValue3 === "x" && cellValue6 === "x" && cellValue9 === "x") ||
-    (cellValue1 === "x" && cellValue5 === "x" && cellValue9 === "x") ||
-    (cellValue3 === "x" && cellValue5 === "x" && cellValue7 === "x")
-  ) {
+  if (checkArray('x')) {
     xScore++;
     winnerText.textContent = `x Win !`;
+
+    console.log('x win');
     stopGame();
-  } else if (
-    (cellValue1 === "o" && cellValue2 === "o" && cellValue3 === "o") ||
-    (cellValue4 === "o" && cellValue5 === "o" && cellValue6 === "o") ||
-    (cellValue7 === "o" && cellValue8 === "o" && cellValue9 === "o") ||
-    (cellValue1 === "o" && cellValue4 === "o" && cellValue7 === "o") ||
-    (cellValue2 === "o" && cellValue5 === "o" && cellValue8 === "o") ||
-    (cellValue3 === "o" && cellValue6 === "o" && cellValue9 === "o") ||
-    (cellValue1 === "o" && cellValue5 === "o" && cellValue9 === "o") ||
-    (cellValue3 === "o" && cellValue5 === "o" && cellValue7 === "o")
-  ) {
+  } else if (checkArray('o')) {
     oScore++;
     winnerText.textContent = `o Win !`;
+
+    console.log('o win');
     stopGame();
   } else if (clickCount === 9) {
     winnerText.textContent = `Tie !`;
+
+    console.log('tie');
     stopGame();
   }
-};
+}
 
 function selectGridCell(e) {
   i++;
 
-  gameBoard.appendElement(array[i]);
-  gameBoard.getGameBoardArray();
+  let index = parseInt(e.target.id) // Convert the id to get the index, splice to insert at the correct index
+
+  gameBoard.spliceElement(index, array[i]);
+  gameBoard.outputArray();
 
   e.target.textContent = array[i];
   e.target.removeEventListener('click', selectGridCell);
   checkResult();
-
-  checkResulstTest()
 }
 
 function enableEventListener() {
@@ -149,7 +119,6 @@ function ochoice() {
 
   enableEventListener()
 }
-
 
 // Main init
 function createScore() {
@@ -186,6 +155,7 @@ function createGrid() {
   for (let i = 0; i < 9; i++) {
     let gridCell = document.createElement('div');
     gridCell.classList.add('grid-cell');
+    gridCell.id = i;
     grid.appendChild(gridCell);
   }
 
