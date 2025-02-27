@@ -14,10 +14,6 @@ The goal is to store the gameboard as an array inside an object using a little a
 2. CSS
 * Add images for bots and players
 3. JS
-* Change functions
-* Use less global code
-* Implement a Gameboard object and store the array inside
-* Clean code, and winning conditions
 * Create clear game instructions
 * Display who wins, not which choice has won
 * Make the opponent choice more clear (ie. bot has been selected)
@@ -25,11 +21,5 @@ The goal is to store the gameboard as an array inside an object using a little a
 4. Readme
 * add images credits
 
-Add bot player  
-
-Game grid  
-    * !! Disable eventlistener before choice    
-    *Refactor score: not x/0 more player/opponent  
-    *Refactor querySelector  
-    *Refactor winning conditions  
-    *Add image  
+Add bot player   
+    
