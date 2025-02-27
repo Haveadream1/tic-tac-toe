@@ -4,7 +4,7 @@ We can choose and change the sign at each round, continue the game or go back to
 ## Goal
 The goal is to store the gameboard as an array inside an object using a little as possible of global code. All by avoiding global code, so most elements are created with JS and added to the DOM.
 ## Preview
-[Tic Tac Toe](http://127.0.0.1:3000/index.html)
+[Tic Tac Toe](https://haveadream1.github.io/tic-tac-toe/)
 
 ## Credit
 [TheOdinProject](https://www.theodinproject.com/)     
